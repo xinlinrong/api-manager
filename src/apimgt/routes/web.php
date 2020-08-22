@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 登录页面路由
+Route::get('/passport/login', 'Passport@login');
+
 Route::get('/', function () {
     return view('welcome');
 });
