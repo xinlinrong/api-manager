@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 // 登录页面路由
 Route::get('/passport/login', 'Passport@login');
+Route::post('/passport/doLogin', 'Passport@doLogin');
+Route::get('/passport/doLogin', 'Passport@logout');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', function () {return view('welcome');});

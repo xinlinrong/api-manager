@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace app\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -23,10 +24,26 @@ class Passport extends BaseController
     use ValidatesRequests;
 
     /**
-     * 登录页面
+     * 展示登录页面
      */
     public function login()
     {
         return view('passport/login');
+    }
+
+    /**
+     * 执行登录操作
+     */
+    public function doLogin()
+    {
+
+    }
+
+    /**
+     * 执行登出操作
+     */
+    public function logout()
+    {
+        
     }
 }
