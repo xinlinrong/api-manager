@@ -12,11 +12,14 @@
             <div class="content">@yield('content')</div>
             <div class="footer">@yield('footer')</div>
         </div>
-        @if (env('APP_ENV') === 'production')
         <script src="{{asset('/js/layui/layui.all.js')}}"></script>
-        @else
-        <script src="{{asset('/js/layui/layui.js')}}"></script>
-        @endif
+        <script>
+         layui.use(['layer', 'form', 'jquery'], function(){
+             layer = layui.layer;
+             form = layui.form;
+             $ = layui.jquery;
+         });
+        </script>
         @yield('scripts')
     </body>
 </html>

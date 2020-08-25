@@ -8,6 +8,8 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 
+use App\Http\Requests\Passport\LoginRequest;
+
 /**
  * Class: Passport
  * 
@@ -33,9 +35,9 @@ class Passport extends BaseController
     /**
      * 执行登录操作
      */
-    public function doLogin()
+    public function doLogin(LoginRequest $request)
     {
-
+        
     }
 
     /**
