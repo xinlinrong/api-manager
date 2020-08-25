@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace app\Http\Controllers;
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;

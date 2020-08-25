@@ -15,3 +15,4 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
  
  mix.copyDirectory('node_modules/layui-src/dist', 'public/js/layui');
+ mix.copyDirectory('resources/passport', 'public/js/passport');
