@@ -1,7 +1,6 @@
 @extends('layouts/default/main')
 @section('scripts')
     <script src="{{asset('js/passport/passport.js')}}"></script>
-    <script src="{{asset('js/common/httprequest.js')}}"></script>
     <script>
     (function() {
          // 表单登录验证
@@ -21,17 +20,22 @@
              }
          });
     
+         
          // 提交表单事件
          layui.form.on('submit(User-login)', function(data){
-             $.post({
-                 url: '{{url("/passport/doLogin")}}',
-                 data: data.field,
-                 dataType: 'json'
-             }).done(function(data) {
-                 alert('登录成功');
-             }).fail(function() {
-                 alert('登录失败');
-             })
+             new HttpRequestHandler(
+                 new HttpPostRequest({
+                     requesturl: '{{url("/passport/doLogin")}}',
+                     data: data.field,
+                     dataType: 'json'
+                 }),
+                 function(data) {
+                     alert('登录成功');
+                 },
+                 function() {
+                     alert('登录失败');
+                 }
+             ).execute();
          });
     })();
 </script>

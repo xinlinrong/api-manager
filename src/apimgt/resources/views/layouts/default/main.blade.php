@@ -13,6 +13,7 @@
             <div class="footer">@yield('footer')</div>
         </div>
         <script src="{{asset('/js/layui/layui.all.js')}}"></script>
+        <script src="{{asset('/js/common/http.js')}}"></script>
         <script>
              layui.use(['layer', 'form', 'jquery'], function(){
                  layer = layui.layer;

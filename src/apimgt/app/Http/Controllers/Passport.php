@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-
 namespace app\Http\Controllers;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -37,7 +36,7 @@ class Passport extends BaseController
      */
     public function doLogin(LoginRequest $request)
     {
-        
+        return response()->json(['status'=>1, 'message'=>'message']);
     }
 
     /**
