@@ -1,7 +1,9 @@
-"use strict"
+"use strict";
 
 /**
  * 定义 Passport
  */
-var Passport = {
-};
+var Passport;
+(function(){
+    
+})();

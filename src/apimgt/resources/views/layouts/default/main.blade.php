@@ -14,11 +14,11 @@
         </div>
         <script src="{{asset('/js/layui/layui.all.js')}}"></script>
         <script>
-         layui.use(['layer', 'form', 'jquery'], function(){
-             layer = layui.layer;
-             form = layui.form;
-             $ = layui.jquery;
-         });
+             layui.use(['layer', 'form', 'jquery'], function(){
+                 layer = layui.layer;
+                 form = layui.form;
+                 $ = layui.jquery;
+             });
         </script>
         @yield('scripts')
     </body>

@@ -1,5 +1,4 @@
 "use strict"
-require('./HttpRequest')
 
 /**
  * 普通表单处理器

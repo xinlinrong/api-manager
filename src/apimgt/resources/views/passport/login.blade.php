@@ -1,38 +1,39 @@
 @extends('layouts/default/main')
 @section('scripts')
-<script src="{{asset('js/passport/passport.js')}}"></script>
-<script>
-(function() {
-     // 表单登录验证
-     layui.form.verify({
-         account: function(value, item) {
-             if (value.length == 0) {
-                 return '请输入帐户名称';
+    <script src="{{asset('js/passport/passport.js')}}"></script>
+    <script src="{{asset('js/common/httprequest.js')}}"></script>
+    <script>
+    (function() {
+         // 表单登录验证
+         layui.form.verify({
+             account: function(value, item) {
+                 if (value.length == 0) {
+                     return '请输入帐户名称';
+                 }
+             },
+             password: function(value, item) {
+                 if (value.length == 0) {
+                     return '请输入密码';
+                 }
+                 if (value.length < 6 || value.length > 20) {
+                     return '密码长度为6-20位字符或数字';
+                 }
              }
-         },
-         password: function(value, item) {
-             if (value.length == 0) {
-                 return '请输入密码';
-             }
-             if (value.length < 6 || value.length > 20) {
-                 return '密码长度为6-20位字符或数字';
-             }
-         }
-     });
-
-     // 提交表单事件
-     layui.form.on('submit(User-login)', function(data){
-         $.post({
-             url: '{{url("/passport/doLogin")}}',
-             data: data.field,
-             dataType: 'json'
-         }).done(function(data) {
-             alert('登录成功');
-         }).fail(function() {
-             alert('登录失败');
-         })
-     });
-})();
+         });
+    
+         // 提交表单事件
+         layui.form.on('submit(User-login)', function(data){
+             $.post({
+                 url: '{{url("/passport/doLogin")}}',
+                 data: data.field,
+                 dataType: 'json'
+             }).done(function(data) {
+                 alert('登录成功');
+             }).fail(function() {
+                 alert('登录失败');
+             })
+         });
+    })();
 </script>
 @endsection
 
