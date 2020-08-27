@@ -1,12 +1,11 @@
 /**
  * 定义 Passport
  */
-(function(){
+(function(win){
     /**
      * 登录页
      */
-    var LoginPageHandler;
-    LoginPageHandler = function() {
+    win.LoginPageHandler = function() {
         // 表单登录验证
         layui.form.verify({
             account: function(value, item) {
@@ -27,7 +26,7 @@
         layui.form.on('submit(User-login)', function(data) {
             new HttpRequestHandler(
                 new HttpPostRequest({
-                    requesturl: '{{url("/passport/doLogin")}}',
+                    requesturl: "/passport/doLogin",
                     data: data.field,
                     dataType: 'json'
                 }),
@@ -40,5 +39,5 @@
             ).execute();
         });
     }
-    LoginPageHandler.prototype.constructor = LoginPageHandler;
-})();
+    win.$app = new win.LoginPageHandler();
+})(window);

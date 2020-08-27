@@ -4,7 +4,7 @@
     <script src="{{asset('js/user/passport.js')}}"></script>
     <script>(function(){new LoginPageHandler()})()</script>
 @endsection
-@section('title', '项目 API 管理系统登录')
+@section('title', 'API 管理系统登录')
 @section('content')
     @parent
         <div class="login-form-container">

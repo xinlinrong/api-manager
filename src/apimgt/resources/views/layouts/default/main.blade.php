@@ -14,6 +14,7 @@
         </div>
         <script src="{{asset('/js/app.js')}}"></script>
         <script src="{{asset('/js/layui/layui.all.js')}}"></script>
+        <script src="{{asset('/js/common/application.js')}}"></script>
         <script src="{{asset('/js/common/http.js')}}"></script>
         @yield('scripts')
     </body>
