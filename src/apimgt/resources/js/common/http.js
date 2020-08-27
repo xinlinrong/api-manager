@@ -1,8 +1,7 @@
 /**
  * HttpRequest 请求对象
  */
-(function(){
-    "use strict"
+(function(win){
     /**
      * Http 请求构造函数
      * @property requesturl: 请求 URL
@@ -20,8 +19,7 @@
      * @method getByDefaultAdapter() 默认获取请求数据
      * @method getRequest() 获取请求数据
      */
-    var HttpRequest;
-    HttpRequest = function(options) {
+    win.HttpRequest = function(options) {
         this.requesturl = (options.requesturl != undefined) ? options.requesturl : '';
         this.method = (options.method != undefined) ? options.method : 'GET';
         this.data = (options.data != undefined) ? options.data : {} ;
@@ -54,8 +52,7 @@
      * HttpPostRequest 请求对象
      * @inheritdoc
      */
-     var HttpPostRequest;
-    HttpPostRequest =  function(options) {options.method = 'POST'; HttpRequest.call(this, options)}
+    win.HttpPostRequest =  function(options) {options.method = 'POST'; HttpRequest.call(this, options)}
     HttpPostRequest.prototype = HttpRequest.prototype
     HttpPostRequest.prototype.constructor = HttpPostRequest
 
@@ -63,8 +60,7 @@
      * HttpGetRequest
      * @inheritdoc
      */
-    var HttpGetRequest;
-    HttpGetRequest = function(options) {options.method = 'GET'; HttpRequest.call(this, options)}
+    win.HttpGetRequest = function(options) {options.method = 'GET'; HttpRequest.call(this, options)}
     HttpGetRequest.prototype = HttpRequest.prototype
     HttpGetRequest.prototype.constructor = HttpGetRequest
 
@@ -78,8 +74,7 @@
      * @method constructor() 构造函数
      * @method execute() 执行请求
      */
-    var HttpRequestHandler;
-    HttpRequestHandler = function(httpRequest, successCallback, errorCallback) {
+    win.HttpRequestHandler = function(httpRequest, successCallback, errorCallback) {
         this.httpRequest = httpRequest;
         this.successCallback = successCallback;
         this.errorCallback = errorCallback;
@@ -103,7 +98,6 @@
      * HttpException 异常对象
      * @inheritdoc
      */
-    var HttpException;
-    HttpException = function(message) {Error.call(this, message)}
+    win.HttpException = function(message) {Error.call(this, message)}
     HttpException.prototype.constructor = HttpException
-})();
+})(window);
