@@ -11,9 +11,24 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+/*
+mix.webpackConfig({
+    resolve: {
+        modules: [
+            "node_modules",
+            path.resolve(__dirname, "")
+        ]
+    }
+})
+*/
+
+mix.js('resources/js/app.js','public/js/')
     .sass('resources/sass/app.scss', 'public/css');
+
+mix.js('node_modules/layui-src/dist/layui.all.js', 'public/js/layui');
+mix.copyDirectory('node_modules/layui-src/dist/css', 'public/js/layui/css/');
+mix.copyDirectory('node_modules/layui-src/dist/font', 'public/js/layui/font/');
+mix.copyDirectory('node_modules/layui-src/dist/images', 'public/js/layui/images/');
  
- mix.copyDirectory('node_modules/layui-src/dist', 'public/js/layui');
- mix.copyDirectory('resources/js/passport', 'public/js/passport');
-  mix.copyDirectory('resources/js/common', 'public/js/common');
+mix.js('resources/js/user/passport.js', 'public/js/user');
+mix.js('resources/js/common/http.js', 'public/js/common');
