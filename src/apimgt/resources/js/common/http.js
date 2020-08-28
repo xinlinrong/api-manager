@@ -31,8 +31,8 @@
         this.contenttype = (options.contenttype != undefined) ? options.contenttype : false;
         this.xhr = (options.xhr != undefined) ? options.xhr : false;
     },
-    HttpRequest.prototype.constructor = HttpRequest;
-    HttpRequest.prototype.getByDefaultAdapter = function() {
+    win.HttpRequest.prototype.constructor = HttpRequest;
+    win.HttpRequest.prototype.getByDefaultAdapter = function() {
         var requestdata = {};
         requestdata.url = this.requesturl;
         requestdata.type = this.method;
@@ -46,23 +46,23 @@
         if (this.xhr) requestdata.xhr = this.xhr;
         return requestdata;
     }
-    HttpRequest.prototype.getRequest = function() {return this.getByDefaultAdapter()}
+    win.HttpRequest.prototype.getRequest = function() {return this.getByDefaultAdapter()}
 
     /**
      * HttpPostRequest 请求对象
      * @inheritdoc
      */
-    win.HttpPostRequest =  function(options) {options.method = 'POST'; HttpRequest.call(this, options)}
-    HttpPostRequest.prototype = HttpRequest.prototype
-    HttpPostRequest.prototype.constructor = HttpPostRequest
+    win.HttpPostRequest =  function(options) {HttpRequest.call(this, Object.assign(options, {method: 'POST'}))}
+    win.HttpPostRequest.prototype = win.HttpRequest.prototype
+    win.HttpPostRequest.prototype.constructor = win.HttpPostRequest
 
     /**
      * HttpGetRequest
      * @inheritdoc
      */
-    win.HttpGetRequest = function(options) {options.method = 'GET'; HttpRequest.call(this, options)}
-    HttpGetRequest.prototype = HttpRequest.prototype
-    HttpGetRequest.prototype.constructor = HttpGetRequest
+    win.HttpGetRequest = function(options) {HttpRequest.call(this, Object.assign(options, {method: 'GET'}))}
+    win.HttpGetRequest.prototype = win.HttpRequest.prototype
+    win.HttpGetRequest.prototype.constructor = win.HttpGetRequest
 
    /**
      * HttpRequestHandler 处理对象
@@ -79,19 +79,22 @@
         this.successCallback = successCallback;
         this.errorCallback = errorCallback;
     }
-    HttpRequestHandler.prototype.constructor = HttpRequestHandler
-    HttpRequestHandler.prototype.checkIfFunction = function(fn) {return fn &&(typeof(fn) == 'function')}
-    HttpRequestHandler.prototype.checkAllowMethod=function(){
+    win.HttpRequestHandler.prototype.constructor = HttpRequestHandler
+    win.HttpRequestHandler.prototype.checkIfFunction = function(fn) {return fn &&(typeof(fn) == 'function')}
+    win.HttpRequestHandler.prototype.checkAllowMethod=function(){
         return (this.httpRequest instanceof HttpPostRequest 
         || this.httpRequest instanceof HttpGetRequest)
     }
-    HttpRequestHandler.prototype.execute = function() {
-        if ($ === undefined) throw HttpException("Empty XHttpRequest Object");
+    win.HttpRequestHandler.prototype.getJquery = function (){
+        if (win.jQuery != undefined) return win.jQuery;
+        if (layui.jquery != undefined) return layui.jquery;
+    }
+    win.HttpRequestHandler.prototype.execute = function() {
         if (!this.checkAllowMethod()) throw HttpException("Empty Http Request");
         let requestdata = this.httpRequest.getRequest();
         if (this.checkIfFunction(this.successCallback)) requestdata.success = this.successCallback;
         if (this.checkIfFunction(this.errorCallback)) requestdata.error = this.errorCallback;
-        return $.ajax(requestdata);
+        return this.getJquery().ajax(requestdata);
     }
 
     /**
@@ -99,5 +102,5 @@
      * @inheritdoc
      */
     win.HttpException = function(message) {Error.call(this, message)}
-    HttpException.prototype.constructor = HttpException
+    win.HttpException.prototype.constructor = win.HttpException
 })(window);

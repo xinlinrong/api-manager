@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+const env = 'dev';
 
 /*
  |--------------------------------------------------------------------------
@@ -11,6 +12,14 @@ const mix = require('laravel-mix');
  |
  */
 
+var jsPackByEnv = function(input, output) {
+    if (env === 'dev') {
+        mix.copy(input, output);
+    } else {
+        mix.js(input, output);
+    }
+}
+
 mix.js('resources/js/app.js','public/js/')
     .sass('resources/sass/app.scss', 'public/css');
 
@@ -18,6 +27,7 @@ mix.js('node_modules/layui-src/dist/layui.all.js', 'public/js/layui');
 mix.copyDirectory('node_modules/layui-src/dist/css', 'public/js/layui/css/');
 mix.copyDirectory('node_modules/layui-src/dist/font', 'public/js/layui/font/');
 mix.copyDirectory('node_modules/layui-src/dist/images', 'public/js/layui/images/');
- 
-mix.js('resources/js/user/passport.js', 'public/js/user');
-mix.js('resources/js/common/http.js', 'public/js/common');
+
+jsPackByEnv('resources/js/common/application.js', 'public/js/common'); 
+jsPackByEnv('resources/js/common/http.js', 'public/js/common');
+jsPackByEnv('resources/js/user/login.js', 'public/js/user');

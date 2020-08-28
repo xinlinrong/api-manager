@@ -3,6 +3,7 @@ declare(strict_types=1);
 namespace App\Http\Requests\Passport;
 
 use Illuminate\Foundation\Http\FormRequest as Request;
+use App\Http\Requests\RequestTrait;
 
 /**
  * class: LoginRequest
@@ -14,6 +15,8 @@ use Illuminate\Foundation\Http\FormRequest as Request;
  */
 class LoginRequest extends Request
 {
+    use RequestTrait;
+    
     /**
      * @method : rules
      * 
@@ -21,7 +24,7 @@ class LoginRequest extends Request
      * 
      * @return string[]
      */
-    public function rules()
+    final public function rules()
     {
         return [
             'account' => 'required',
@@ -34,7 +37,7 @@ class LoginRequest extends Request
      * {@inheritDoc}
      * @see \Illuminate\Foundation\Http\FormRequest::messages()
      */
-    public function messages()
+    final public function messages()
     {
         return [
             'account.required' => '请输入帐号',
