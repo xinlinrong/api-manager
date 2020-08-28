@@ -16,7 +16,9 @@
         <script src="{{asset('/js/layui/layui.all.js')}}"></script>
         <script src="{{asset('/js/common/http.js')}}"></script>
         <script src="{{asset('/js/common/application.js')}}"></script>
-       <script>$app = new Application();</script>
+       <script>
+           $app = new Application();
+       </script>
         @yield('scripts')
     </body>
 </html>
