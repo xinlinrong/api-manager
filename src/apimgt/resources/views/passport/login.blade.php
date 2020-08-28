@@ -1,9 +1,5 @@
 @extends('layouts/default/main')
-@section('scripts')
-    <!-- 处理 login logout 的事件 -->
-    <script src="{{asset('js/user/passport.js')}}"></script>
-    <script>(function(){new LoginPageHandler()})()</script>
-@endsection
+@section('title', '项目 API 管理系统登录')
 @section('title', 'API 管理系统登录')
 @section('content')
     @parent
@@ -73,4 +69,8 @@ body {
     padding: 15px;;
 }
 </style>
+@endsection
+@section('scripts')
+    <!-- 处理 login logout 的事件 -->
+    <script src="{{asset('js/user/login.js')}}"></script>
 @endsection
