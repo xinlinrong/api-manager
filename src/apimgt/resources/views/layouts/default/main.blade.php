@@ -14,12 +14,10 @@
         </div>
         <script src="{{asset('/js/app.js')}}"></script>
         <script src="{{asset('/js/layui/layui.all.js')}}"></script>
-        <script src="{{asset('/js/common/application.js')}}"></script>
         <script src="{{asset('/js/common/http.js')}}"></script>
         <script src="{{asset('/js/common/application.js')}}"></script>
-       <script>
-           $app = new Application();
-       </script>
+        <script src="{{asset('/js/common/ui/messagebox.js')}}"></script>
+        <script type="text/javascript">(function(win){ win. _app = new Application()})(window)</script>
         @yield('scripts')
     </body>
 </html>

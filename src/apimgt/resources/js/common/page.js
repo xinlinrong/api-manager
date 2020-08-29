@@ -3,9 +3,9 @@
  */
 (function(win){
     /**
-     * 当前页面
+     * 当前页面 AppPage
      */
-    win.OurPage = function() {}
-    win.OurPage.prototype.constructor = win.OurPage;
-    win.OurPage.prototype.getHtmlContent = function() {}
+    win.AppPage = function() {}
+    win.AppPage.prototype.constructor = win.AppPage;
+    win.AppPage.prototype.getHtmlContent = function() {}
 })(window)

@@ -2,7 +2,7 @@
  * JS Application 应用类
  */
 (function(win){
-    win.Application = function(config) {}
+    win.Application = function(config) {this.config = config}
 
     /**
      * 构造函数

@@ -33,7 +33,6 @@
                 }),
                 function(data) {
                     alert('登录成功');
-                    layui.
                 },
                 function() {
                     alert('登录失败');
