@@ -28,7 +28,8 @@ mix.copyDirectory('node_modules/layui-src/dist/css', 'public/js/layui/css/');
 mix.copyDirectory('node_modules/layui-src/dist/font', 'public/js/layui/font/');
 mix.copyDirectory('node_modules/layui-src/dist/images', 'public/js/layui/images/');
 
-jsPackByEnv('resources/js/common/application.js', 'public/js/common'); 
+jsPackByEnv('resources/js/common/page.js', 'public/js/common');
+jsPackByEnv('resources/js/common/application.js', 'public/js/common');
 jsPackByEnv('resources/js/common/http.js', 'public/js/common');
 jsPackByEnv('resources/js/common/ui/messagebox.js', 'public/js/common/ui');
 jsPackByEnv('resources/js/user/login.js', 'public/js/user');

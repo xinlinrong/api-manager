@@ -25,22 +25,17 @@
         // 提交表单事件
         layui.form.on('submit(User-login)', function(data) {
             data.field.password = md5(data.field.password)
-            new HttpRequestHandler(
-                new HttpPostRequest({
-                    requesturl: "/passport/doLogin",
-                    data: data.field,
-                    dataType: 'json'
-                }),
+            _page.post(
+                '/passport/doLogin',
+                data.field,
                 function(data) {
-                    alert('登录成功');
+                    MessageBox.Success('登录成功');
                 },
                 function() {
-                    alert('登录失败');
+                    MessageBox.Error('登录失败');
                 }
-            ).execute();
+            )
         });
     }
-
-    $app = new win.Application();
     $app.register();
 })(window);

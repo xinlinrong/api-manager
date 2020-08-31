@@ -27,7 +27,7 @@
     MessageBox.Info = function(message, options) {
         var myOptions = Object.assign({}, options);
         myOptions.title = getValueFormOptions(myOptions, 'title', ['消息', 'font-size:18px;']);
-        myOptions.area = getValueFormOptions(myOptions, 'area', ['25%', '25%']);
+        myOptions.area = getValueFormOptions(myOptions, 'area', ['25%', '20%']);
         myOptions.icon = getValueFormOptions(myOptions, 'icon', -1);
         myOptions.fixed = getValueFormOptions(myOptions, 'fixed', true);
         myOptions.resize  = getValueFormOptions(myOptions, 'resize', false);
@@ -88,7 +88,12 @@
         myOptions.area = getValueFormOptions(myOptions, 'area', ['30%', '25%']);
         myOptions.btn = getValueFormOptions(myOptions, 'btn', ['确定', '取消']);
         myOptions.yes = function(index, layero) {
-            setTimeout(function(){confirmCallable.apply()}, 1000); // 设定 1 秒后执行
+            setTimeout(
+                function(){
+                    confirmCallable.apply()
+                },
+                1000
+            ); // 设定 1 秒后执行
             layer.close(index);
         }
         return MessageBox.Info(message, myOptions);

@@ -30,6 +30,8 @@
         this.processdata =(options.processdata != undefined) ?  options.processdata : false;
         this.contenttype = (options.contenttype != undefined) ? options.contenttype : false;
         this.xhr = (options.xhr != undefined) ? options.xhr : false;
+        this.success = (options.successCallback) ? options.successCallback : null;
+        this.error = (options.errorCallback) ? options.errorCallback : null;
     },
     win.HttpRequest.prototype.constructor = HttpRequest;
     win.HttpRequest.prototype.getByDefaultAdapter = function() {
@@ -44,6 +46,8 @@
         if (this.processdata) requestdata.processData = this.processdata;
         if (this.contenttype) requestdata.contenttype = this.contenttype;
         if (this.xhr) requestdata.xhr = this.xhr;
+        if (this.success) requestdata.success = this.success;
+        if (this.error) requestdata.error = this.error;
         return requestdata;
     }
     win.HttpRequest.prototype.getRequest = function() {return this.getByDefaultAdapter()}
@@ -68,17 +72,13 @@
      * HttpRequestHandler 处理对象
      * Http 请求处理类构造函数
      * @property httpRequest: http 请求类
-     * @property successCallback: 成功返回时的回调函数
-     * @property errorCallback: 失败时回调函数
      *
      * @method constructor() 构造函数
      * @method execute() 执行请求
      */
     if (win.HttpRequestHandler === undefined) { 
-        win.HttpRequestHandler = function(httpRequest, successCallback, errorCallback) {
+        win.HttpRequestHandler = function(httpRequest) {
             this.httpRequest = httpRequest;
-            this.successCallback = successCallback;
-            this.errorCallback = errorCallback;
         }
         win.HttpRequestHandler.prototype.constructor = win.HttpRequestHandler
         win.HttpRequestHandler.prototype.checkIfFunction = function(fn) {return fn &&(typeof(fn) == 'function')}
@@ -94,28 +94,8 @@
         win.HttpRequestHandler.prototype.execute = function() {
             if (this.getJquery() === undefined) throw HttpException("Empty XHttpRequest Object");
             if (!this.checkAllowMethod()) throw HttpException("Empty Http Request");
-            let requestdata = this.httpRequest.getRequest();
-            if (this.checkIfFunction(this.successCallback)) requestdata.success = this.successCallback;
-            if (this.checkIfFunction(this.errorCallback)) requestdata.error = this.errorCallback;
-            return this.getJquery().ajax(requestdata);
+            return this.getJquery().ajax(this.httpRequest.getRequest());
         }
-    }
-    win.HttpRequestHandler.prototype.constructor = HttpRequestHandler
-    win.HttpRequestHandler.prototype.checkIfFunction = function(fn) {return fn &&(typeof(fn) == 'function')}
-    win.HttpRequestHandler.prototype.checkAllowMethod=function(){
-        return (this.httpRequest instanceof HttpPostRequest 
-        || this.httpRequest instanceof HttpGetRequest)
-    }
-    win.HttpRequestHandler.prototype.getJquery = function (){
-        if (win.jQuery != undefined) return win.jQuery;
-        if (layui.jquery != undefined) return layui.jquery;
-    }
-    win.HttpRequestHandler.prototype.execute = function() {
-        if (!this.checkAllowMethod()) throw HttpException("Empty Http Request");
-        let requestdata = this.httpRequest.getRequest();
-        if (this.checkIfFunction(this.successCallback)) requestdata.success = this.successCallback;
-        if (this.checkIfFunction(this.errorCallback)) requestdata.error = this.errorCallback;
-        return this.getJquery().ajax(requestdata);
     }
 
     /**
@@ -162,6 +142,7 @@
         if (options) {
             this.url = (options.url != undefined) ? options.url : '';
             this.data = (options.data != undefined) ? options.data : {};
+            this.method = (options.method != undefined) ? options.method : '';
             this.datatype = (options.datatype != undefined) ? options.datatype : 'json';
             this.async = (options.async != undefined) ? options.async : true;
             this.timeout = (options.timeout != undefined) ? options.timeout : 30;
@@ -175,20 +156,22 @@
     }
     win.http.prototype.getOptions = function() {
         options = {};
-        options.url = this.requesturl;
-        options.type = this.method;
+        options.requesturl = this.url;
+        options.method = this.method;
         options.data = this.data;
         options.dataType = this.datatype;
         options.async = this.async;
-        options.timeout = this.timeoutinsec * 1000;
+        options.timeout = this.timeout;
         if (this.headers)  options.headers = this.headers;
         if (this.processdata) options.processData = this.processdata;
         if (this.contenttype) options.contenttype = this.contenttype;
         if (this.xhr) options.xhr = this.xhr;
         if (this.successCallback) options.successCallback = this.successCallback;
         if (this.errorCallback) options.errorCallback = this.errorCallback;
+        return options;
     }
     win.http.prototype.setUrl = function(url) {this.url = url; return this;}
+    win.http.prototype.setMethod = function(method) {this.method = method; return this;}
     win.http.prototype.setData = function(data) {this.data = data; return this;}
     win.http.prototype.setDataType = function(datatype) {this.datatype = datatype; return this;}
     win.http.prototype.setAsync = function(async) {this.async = async; return this;}
@@ -200,13 +183,9 @@
     win.http.prototype.setSuccessCallback = function(successCallback) {this.successCallback = successCallback; return this;}
     win.http.prototype.setErrorCallback = function(errorCallback) {this.errorCallback = errorCallback; return this;}
     win.http.prototype.post = function() {
-        var request = new HttpPostRequest(this.getOptions());
-        var httpRequestHandler = new HttpRequestHandler(request, this.successCallback, this.errorCallback);
-        httpRequestHandler.execute(); 
+        (new HttpRequestHandler(new HttpPostRequest(this.getOptions()))).execute();
     }
     win.http.prototype.get = function() {
-        var request = new HttpGetRequest(this.getOptions());
-        var httpRequestHandler = new HttpRequestHandler(request, this.successCallback, this.errorCallback);
-        httpRequestHandler.execute(); 
+        (new HttpRequestHandler(new HttpGetRequest(this.getOptions()))).execute();
     }
 })(window);
