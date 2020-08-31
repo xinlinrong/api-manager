@@ -36,7 +36,7 @@ class Passport extends BaseController
      */
     public function doLogin(LoginRequest $request)
     {
-        return response()->json(['status'=>1, 'message'=>'message']);
+        return response()->json(['code'=>1, 'message'=>'message']);
     }
 
     /**
