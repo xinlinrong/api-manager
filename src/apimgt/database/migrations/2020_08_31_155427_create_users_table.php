@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             Schema::create('api_sys_users', function (Blueprint $table) {
                 $table->id(); // 主键
                 $table->string('name', 32)->nullable(false)->comment('名称'); // 名称
-                $table->string('nickname')->nullable(false)->comment('昵称');
+                $table->string('nickname', 32)->nullable(false)->comment('昵称');
                 $table->string('email', 64)->nullable(false)->comment('电子邮箱')->unique('uidx_users_email');
                 $table->string('password', 255)->nullable(false)->comment('密码');
                 $table->tinyInteger('is_active', false, true)->nullable(false)->default(1)->comment('是否冻结');
