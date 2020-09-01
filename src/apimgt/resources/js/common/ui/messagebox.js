@@ -18,6 +18,25 @@
         return null;
     }
 
+    /**
+     * 弹出消息提示
+     * @param {String} message: 要展示的消息提示文案
+     * @param {Object} options:  展示配置
+     * @return {Integer} Index: 消息提示的索引
+     */
+    MessageBox.Msg = function(message, options, callable) {
+        var applyArgs = new Array();
+        applyArgs.push(message);
+        if (options) {
+            var myOptions = Object.assign({}, options);
+            myOptions.icon = getValueFormOptions(myOptions, 'icon', -1);
+            myOptions.icon = getValueFormOptions(myOptions, 'time', 3000);
+            applyArgs.push(myOptions);
+        }
+        if (typeof(callable) == 'function' && callable) applyArgs.push(callable);
+        return layer.msg.apply(layer.msg, applyArgs);
+    }
+
    /**
      * 弹出消息盒子
      * @param {String} message: 消息展示

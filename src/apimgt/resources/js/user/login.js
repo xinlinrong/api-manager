@@ -29,10 +29,12 @@
                 '/passport/doLogin',
                 data.field,
                 function(data) {
-                    MessageBox.Success('登录成功');
+                    MessageBox.Msg(data.message);
+                    if (data.code) {
+                    }
                 },
                 function() {
-                    MessageBox.Error('登录失败');
+                    MessageBox.Msg('登录失败');
                 }
             )
         });
