@@ -37,5 +37,5 @@
             )
         });
     }
-    $app.register();
+    _app.register();
 })(window);

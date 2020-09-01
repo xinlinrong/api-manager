@@ -10,13 +10,25 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const CREATED_AT = 'create_at';
+    const UPDATED_AT = 'update_at';
+    
+    protected $table = 'api_sys_users';
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'id',
+        'name',
+        'email',
+        'password',
+        'login_times',
+        'last_login_at',
+        'create_at',
+        'update_at',
     ];
 
     /**
@@ -33,7 +45,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    //protected $casts = [
+    //    'email_verified_at' => 'datetime',
+    //];
 }

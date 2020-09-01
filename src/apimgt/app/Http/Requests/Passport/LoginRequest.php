@@ -28,7 +28,7 @@ class LoginRequest extends Request
     {
         return [
             'account' => 'required',
-            'password' => 'required|min:6|max:20',
+            'password' => 'required',
             'rememberme' => '',
         ];
     }
@@ -42,8 +42,6 @@ class LoginRequest extends Request
         return [
             'account.required' => '请输入帐号',
             'password.required' => '请输入密码',
-            'password.min' => '登录密码长度为6-20位的字符串',
-            'password.max' => '登录密码长度为6-20位的字符串',
         ];
     }
 }
