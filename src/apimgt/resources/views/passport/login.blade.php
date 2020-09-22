@@ -1,5 +1,4 @@
-@extends('layouts/default/main')
-@section('title', '项目 API 管理系统登录')
+@extends('layouts/default/login')
 @section('title', 'API 管理系统登录')
 @section('content')
     @parent

@@ -18,4 +18,7 @@ Route::get('/passport/login', 'Passport@login');
 Route::post('/passport/doLogin', 'Passport@doLogin');
 Route::post('/passport/doLogout', 'Passport@logout');
 
+// 空值面板路由
+Route::get('/dashboard/index', 'Dashboard@index');
+
 Route::get('/', function () {return view('welcome');});

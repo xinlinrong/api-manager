@@ -108,10 +108,8 @@
         myOptions.btn = getValueFormOptions(myOptions, 'btn', ['确定', '取消']);
         myOptions.yes = function(index, layero) {
             setTimeout(
-                function(){
-                    confirmCallable.apply()
-                },
-                1000
+               function(){ confirmCallable.apply()},
+               1000
             ); // 设定 1 秒后执行
             layer.close(index);
         }

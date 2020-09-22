@@ -149,4 +149,7 @@
         }
         MessageBox.Confirm(message, {}, singleConfirm);
     }
+    win.AppPage.prototype.load = function(pfunc, args) {
+        if (typeof(pfunc) == function) {}
+    }
 })(window)

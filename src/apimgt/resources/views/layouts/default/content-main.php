@@ -1,0 +1,1 @@
+<div class="layui-body">@yield('main')</div>
