@@ -7,7 +7,7 @@
         <link href="{{asset('/js/layui/css/layui.css')}}"  rel="stylesheet" >
     </head>
     <body class="layui-layout-body">
-        <div class="layui-layout layui-layout-admin">@yield('content-wrapper')</div>
+        <div class="layui-layout layui-layout-admin">@yield('content')</div>
         <script src="{{asset('/js/app.js')}}"></script>
         <script src="{{asset('/js/layui/layui.all.js')}}"></script>
         <script src="{{asset('/js/common/http.js')}}"></script>

@@ -1,2 +1,1 @@
-<div class="layui-side content-aside">
-</div>
+<div class="layui-side content-aside">{{ $title ?? '' }}</div>
